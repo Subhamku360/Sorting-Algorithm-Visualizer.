@@ -1,0 +1,193 @@
+:root {
+    --bg-color: #0d1117; /* GitHub dark background */
+    --text-color: #c9d1d9; /* GitHub dark text */
+    --border-color: #30363d;
+    --control-bg: #161b22;
+    --control-hover-bg: #21262d;
+    --button-bg: #238636;
+    --button-hover-bg: #2ea043;
+    --box-bg: #1f6feb; /* Brighter blue for boxes */
+    --box-text: #ffffff;
+    --comparing-bg: #dbab0a; /* Yellowish */
+    --swapping-bg: #da3633; /* Reddish */
+    --sorted-bg: #2ea043; /* Greenish */
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--control-bg);
+    color: var(--text-color);
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    margin: 0;
+}
+
+.controls {
+    background-color: var(--control-bg);
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.controls label {
+    font-weight: 500;
+}
+
+.controls select,
+.controls input[type="range"],
+.controls button {
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--control-hover-bg);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+/* Style range inputs */
+.controls input[type="range"] {
+    cursor: pointer;
+    padding: 0; /* Remove padding for range */
+}
+
+.controls button {
+    background-color: var(--button-bg);
+    color: var(--box-text);
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.controls button:hover:not(:disabled) {
+    background-color: var(--button-hover-bg);
+}
+
+.controls button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Style for Stop Button */
+#stop {
+    background-color: var(--swapping-bg); /* Use red color */
+}
+#stop:hover:not(:disabled) {
+    background-color: #a40e26; /* Darker red on hover */
+}
+
+/* Utility class to hide elements */
+.hidden {
+    display: none !important;
+}
+
+
+#visualization-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    /* Removed background color, inherits from body */
+    min-height: 150px;
+    gap: 8px; /* Slightly wider gap */
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative; /* Needed for absolute positioning of bars if we used that */
+}
+
+.bar {
+    background-color: var(--box-bg);
+    border: 1px solid var(--border-color);
+    color: var(--box-text);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 6px; /* Rounded corners */
+    box-shadow: var(--box-shadow);
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Add transform transition */
+    flex-shrink: 0;
+    position: relative; /* Required for smooth transition using transform */
+    left: 0; /* Initial position for transform */
+}
+
+/* Colors for different states */
+.bar.comparing {
+    background-color: var(--comparing-bg);
+    color: #111; /* Darker text on lighter background */
+}
+
+.bar.swapping {
+    background-color: var(--swapping-bg);
+}
+
+.bar.sorted {
+    background-color: var(--sorted-bg);
+}
+
+footer {
+    background-color: var(--control-bg);
+    color: var(--text-color);
+    padding: 0.5rem;
+    text-align: center;
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.8rem;
+}
+
+/* Optional: Subtle background gradient animation */
+/* body {
+    ... existing styles ...
+    background: linear-gradient(-45deg, #0d1117, #161b22, #0d1117, #21262d);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+} */
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch; /* Make controls take full width */
+    }
+    .control-group {
+        justify-content: space-between; /* Space out label and control */
+    }
+    #visualization-area {
+        padding: 1rem;
+    }
+}

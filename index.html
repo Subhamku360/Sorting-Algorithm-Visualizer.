@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithm Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Sorting Algorithm Visualizer</h1>
+    </header>
+
+    <nav class="controls">
+        <div class="control-group">
+            <label for="algorithm">Algorithm:</label>
+            <select id="algorithm">
+                <option value="bubbleSort">Bubble Sort</option>
+                <option value="selectionSort">Selection Sort</option>
+                <option value="insertionSort">Insertion Sort</option>
+                <option value="mergeSort">Merge Sort</option>
+                <option value="quickSort">Quick Sort</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label for="speed">Speed:</label>
+            <input type="range" id="speed" min="1" max="100" value="50">
+        </div>
+        <div class="control-group">
+            <label for="size">Array Size:</label>
+            <input type="range" id="size" min="10" max="200" value="20">
+        </div>
+        <button id="generate">Generate New Array</button>
+        <button id="start">Start Sorting</button>
+        <button id="stop" class="hidden">Stop</button>
+    </nav>
+
+    <main id="visualization-area">
+        <!-- Bars will be generated here by JavaScript -->
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
